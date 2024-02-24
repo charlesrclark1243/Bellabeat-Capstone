@@ -19,6 +19,9 @@
   - [`dailyCalories_merged.csv` Processing](#dailycalories_mergedcsv-processing)
   - [`dailyActivity_merged.csv` Processing](#dailyactivity_mergedcsv-processing)
   - [`INNER JOIN` Between the Four `daily*_merged.csv` Files](#inner-join-between-the-four-daily_mergedcsv-files)
+- [Analyze Phase](#analyze-phase)
+  - [`joined_daily_activity_calories_intensity_steps.csv` Analysis](#joined_daily_activity_calories_intensity_stepscsv-analysis)
+    - [Grouped by Weekday](#grouped-by-weekday)
 
 ## Ask Phase
 
@@ -33,7 +36,7 @@ Analyze existing non-Bellabeat product consumer data to identify Bellabeat's are
 
 ## Prepare Phase
 
-The data used throughout this project is the "FitBit Fitness Tracker Data" by Möbius on Kaggle (found [here](https://www.kaggle.com/datasets/arashnic/fitbit/data)). All the data are stored in CSV files located in the `./data` directory, and each file contains data collected between April 12, 2016 and May 12, 2016 from 30 FitBit users in either long or wide format. 
+The data used throughout this project is the "FitBit Fitness Tracker Data" by Möbius on Kaggle (found [here](https://www.kaggle.com/datasets/arashnic/fitbit/data)). All the data are stored in CSV files located in the `./data/original_data` directory, and each file contains data collected between April 12, 2016 and May 12, 2016 from 30 FitBit users in either long or wide format. 
 
 ### Data Limitations
 
@@ -43,7 +46,7 @@ The data used throughout this project is the "FitBit Fitness Tracker Data" by M�
 
 ## Process Phase
 
-The data in each CSV file seem to be relatively clean already. However, I did perform a minimal amount of processing with Google Sheets on some of the data files; this processing is described here. Lastly, I obtained the final data sets to be used in my analysis by importing the Google Sheets-cleaned data into BigQuery and obtaining the data from overlapping dates (only the dates which were still present in all of the data files after initial processing).
+The data in each CSV file seem to be relatively clean already. However, I did perform a minimal amount of processing with Google Sheets on some of the data files; this processing is described here. Lastly, I obtained the final data sets to be used in my analysis by importing the Google Sheets-cleaned data into BigQuery and obtaining the data from overlapping dates (only the dates which were still present in all of the data files after initial processing). All processed data can be found in the `./data/cleaned_data` directory.
 
 ###  `weightLogInfo_merged.csv` Processing
 
@@ -112,3 +115,38 @@ FROM
   AND
     intensities.ActivityDay = steps.ActivityDay;
 ```
+
+The data set resulting from this join operation was exported out of BigQuery into the `joined_daily_activity_calories_intensity_steps.csv`. I then imported the joined data set into Google Sheets, made some further naming convention updates, and prepared for analysis.
+
+## Analyze Phase
+
+### `joined_daily_activity_calories_intensity_steps.csv` Analysis
+
+
+#### Grouped by Weekday
+
+I imported the `joined_daily_activity_calories_intensity_steps.csv` file into BigQuery and executed the SQL queery below; the results were saved in `./data/analysis_data/weekday_activity_analysis.csv`.
+
+```
+SELECT
+  FORMAT_DATE("%A", ActivityDate) AS Weekday,
+  AVG(LightlyActiveMinutes + ModeratelyActiveMinutes + VeryActiveMinutes) AS AvgTotalActiveMinutes,
+  AVG(Calories) AS AvgCalories,
+  AVG(StepTotal) AS AvgStepTotal
+FROM
+  `big_query_project.bellabeat_case_study.joined_dailies`
+GROUP BY
+  Weekday
+ORDER BY
+  CASE
+    WHEN Weekday = "Sunday" THEN 1
+    WHEN Weekday = "Monday" THEN 2
+    WHEN Weekday = "Tuesday" THEN 3
+    WHEN Weekday = "Wednesday" THEN 4
+    WHEN Weekday = "Thursday" THEN 5
+    WHEN Weekday = "Friday" THEN 6
+    WHEN Weekday = "Saturday" THEN 7
+  END ASC;
+```
+
+We found that of all the days in the week, people seem to be the most active on Saturday and the least active on Sunday.
