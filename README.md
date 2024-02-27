@@ -20,8 +20,11 @@
   - [`dailyActivity_merged.csv` Processing](#dailyactivity_mergedcsv-processing)
   - [`INNER JOIN` Between the Four `daily*_merged.csv` Files](#inner-join-between-the-four-daily_mergedcsv-files)
 - [Analyze Phase](#analyze-phase)
-  - [`joined_daily_activity_calories_intensity_steps.csv` Analysis](#joined_daily_activity_calories_intensity_stepscsv-analysis)
-    - [Grouped by Weekday](#grouped-by-weekday)
+  - [`joined_daily_activity_calories_intensity_steps.csv` Analysis Results](#joined_daily_activity_calories_intensity_stepscsv-analysis-results)
+    - [**...Grouped by Weekday Analysis Results**](#grouped-by-weekday-analysis-results)
+  - [`daily_sleep_merged_cleaned.csv` Analysis Results](#daily_sleep_merged_cleanedcsv-analysis-results)
+  - [`weight_log_info_merged_cleaned.csv` Analysis Results](#weight_log_info_merged_cleanedcsv-analysis-results)
+    - [**...Grouped by ID BMI Analysis Results**](#grouped-by-id-bmi-analysis-results)
 
 ## Ask Phase
 
@@ -120,10 +123,22 @@ The data set resulting from this join operation was exported out of BigQuery int
 
 ## Analyze Phase
 
-### `joined_daily_activity_calories_intensity_steps.csv` Analysis
+### `joined_daily_activity_calories_intensity_steps.csv` Analysis Results
+
+I performed a standard summarizing analysis on the `Calories`, `StepTotal`, `SedentaryMinutes`, `LightlyActiveMinutes`, `ModeratelyActiveMinutes`, and `VeryActiveMinutes` features, obtaining the following results which are saved in `./data/analysis_data/joined_daily_activity_calories_intensities_steps_analysis.csv`:
+
+|        | Calories | StepTotal | SedentaryMinutes | LightlyActiveMinutes | ModeratelyActiveMinutes | VeryActiveMinutes |
+| ------ | -------- | --------- | ---------------- | -------------------- | ----------------------- | ----------------- |
+| Mean   | 2356.77 |	8445.63	| 700.73	| 215.40	| 17.60	| 24.46 |
+| Standard Deviation | 759.93	| 4085.55	| 135.72	| 86.20	| 22.38	| 35.90 |
+| Min    | 741.00 |	254.00	| 125.00	| 17.00	| 0.00	| 0.00 |
+| 25th Percentile | 1788.00	| 5183.00	| 631.00	| 156.00	| 0.00	| 0.00 |
+| Median | 2180.00	| 8863.00	| 412.50	| 67.00	| 10.00	| 0.00 |
+| 75th Percentile | 2896.00	| 11193.00	| 776.00	| 263.00	| 26.00	| 36.00 |
+| Max    | 4900.00	| 22770.00	| 1062.00	| 518.00	| 143.00	| 210.00 |
 
 
-#### Grouped by Weekday
+#### **...Grouped by Weekday Analysis Results**
 
 I imported the `joined_daily_activity_calories_intensity_steps.csv` file into BigQuery and executed the SQL queery below; the results were saved in `./data/analysis_data/weekday_activity_analysis.csv`.
 
@@ -149,4 +164,66 @@ ORDER BY
   END ASC;
 ```
 
-We found that of all the days in the week, people seem to be the most active on Saturday and the least active on Sunday.
+From this query, we obtained the following results:
+
+| Weekday	| AvgTotalActiveMinutes	| AvgCalories	| AvgStepTotal |
+| ------- | --------------------- | ----------- | ------------ |
+| Sunday	| 236.77	| 2262.37	| 7423.62 |
+| Monday	| 269.76	| 2373.43	| 9020.50 |
+| Tuesday	| 266.17	| 2500.47	| 9183.23 |
+| Wednesday	| 243.10	| 2361.79	| 7922.96 |
+| Thursday	| 238.33	| 2226.07	| 7992.87 |
+| Friday	| 262.53	| 2335.06	| 8047.13 |
+| Saturday	| 294.92	| 2449.38	| 9715.98 |
+
+### `daily_sleep_merged_cleaned.csv` Analysis Results
+
+I first used Google Sheets to calculate the `TotalHoursAsleep` and `TotalHoursInBed` features from the `TotalMinutesAsleep` and `TotalMinutesInBed` (previously `TotalTimeInBed`), and then I calculated the difference between these two hourly-rated metrics using the formula
+
+```
+HoursAsleepHoursInBedDiff = TotalHoursInBed - TotalHoursAsleep
+```
+
+to determine how much time was spent in bed but not sleeping for each record.
+
+From here, I performed a standard summarizing analysis on the `TotalHoursAsleep`, `TotalHoursInBed`, and `HoursAsleepHoursInBedDiff` features, obtaining the following results which are saved in `daily_sleep_analysis.csv`:
+
+|	     | TotalHoursAsleep	| TotalHoursInBed	| HoursAsleepHoursInBedDiff |
+| ---- | ---------------- | --------------- | ------------------------- |
+| Mean |	6.9911	| 7.6440	| 0.6529 |
+| Standard Deviation	| 1.9724	| 2.1184	| 0.7762 |
+| Min	| 0.9667	| 1.0167	| 0.0000 |
+| 25th Percentile | 6.0167	| 6.7167	| 0.2833 |
+| Median	| 7.2167	| 7.7167	| 0.4167 |
+| 75th Percentile	| 8.1667	| 8.7667	| 0.6667 |
+| Max |	13.2667	| 16.0167	| 6.1833 |
+
+### `weight_log_info_merged_cleaned.csv` Analysis Results
+
+I also performed a standard summarizing analysis on the `WeightPounds` and `BMI` features (I excluded `WeightKg` from this analysis because I was already using pounds as the unit of weight, so using kg would be unnecessarily redundant) and obtained the following results which are saved in `weight_log_info_analysis.csv`:
+
+|	     | WeightPounds	| BMI |
+| ---- | ------------ | --- |
+| Mean	| 158.8118 |	25.1852 |
+| Standard Deviation	| 30.6954	| 3.0670 |
+| Min	| 115.9631	| 21.4500 |
+| 25th Percentile	| 135.3638	| 23.9600 |
+| Median	| 137.7889	| 24.3900 |
+| 75th Percentile	| 187.5032	| 25.5600 |
+| Max	| 294.3171	| 47.5400 |
+
+#### **...Grouped by ID BMI Analysis Results**
+
+I also felt it important to categorize the different users by their average BMIs in order to better understand the user base of such fitness devices. I had intended to import the data into BigQuery, however I received an error when submitting the load job, so I decided to use a Google Sheets pivot table instead; the results (which are saved in `weight_log_info_bmi_analysis.csv`) are shown below:
+
+| Id	| AVERAGE of BMI |
+| --  | -------------- |
+| 1503960366	| 22.65 |
+| 1927972279	| 47.54 |
+| 2873212765	| 21.57 |
+| 4319703577	| 27.41 |
+| 4558609924	| 27.21 |
+| 5577150313	| 28.00 |
+| 6962181067	| 24.03 |
+| 8877689391	| 25.49 |
+| Grand Total	| 25.19 |
