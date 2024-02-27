@@ -1,0 +1,8 @@
+,TotalHoursAsleep,TotalHoursInBed,HoursAsleepHoursInBedDiff
+Mean,6.9911,7.6440,0.6529
+StdDev,1.9724,2.1184,0.7762
+Min,0.9667,1.0167,0.0000
+25pctile,6.0167,6.7167,0.2833
+Median,7.2167,7.7167,0.4167
+75pctile,8.1667,8.7667,0.6667
+Max,13.2667,16.0167,6.1833
