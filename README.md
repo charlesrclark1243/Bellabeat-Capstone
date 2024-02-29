@@ -25,6 +25,10 @@
   - [`daily_sleep_merged_cleaned.csv` Analysis Results](#daily_sleep_merged_cleanedcsv-analysis-results)
   - [`weight_log_info_merged_cleaned.csv` Analysis Results](#weight_log_info_merged_cleanedcsv-analysis-results)
     - [**...Grouped by ID BMI Analysis Results**](#grouped-by-id-bmi-analysis-results)
+  - [Insights](#insights)
+    - [**...From `joined_daily_activity_calories_intensity_steps.csv` Analysis Results**](#from-joined_daily_activity_calories_intensity_stepscsv-analysis-results)
+    - [**...From `daily_sleep_merged_cleaned.csv` Analysis Results**](#from-daily_sleep_merged_cleanedcsv-analysis-results)
+- [References](#references)
 
 ## Ask Phase
 
@@ -227,3 +231,48 @@ I also felt it important to categorize the different users by their average BMIs
 | 6962181067	| 24.03 |
 | 8877689391	| 25.49 |
 | Grand Total	| 25.19 |
+
+### Insights
+
+#### **...From `joined_daily_activity_calories_intensity_steps.csv` Analysis Results**
+
+From any standard summarizing analysis of the data in, one can get a general picture of what the distributions for each of the included features look like:
+  - when mean > median, the distribution is likely positively (right) skewed.
+  - when mean < median, the distribution is likely negatively (left) skewed.
+  - when mean = median, the distribution is likely symmetric (zero skew).
+
+Therefore, the distributions of the features included in `joined_daily_activity_calories_intensities_steps_analysis.csv` are best described as follows:
+
+| Feature | Mean | Median | Skew |
+| ------- | ---- | ------ | ----------------------------- |
+| Calories | 2356.77 | 2180.00 | Positive |
+| StepTotal | 8445.63 | 8863.00 | Negative |
+| Sedentary Minutes | 700.73 | 412.50 | Positive |
+| LightlyActiveMinutes | 215.40 | 67.00 | Positive |
+| ModeratelyActiveMinutes | 17.60	| 10.00 | Positive |
+| VeryActiveMinutes | 24.46 | 0.00 | Positive |
+
+According to the Centers for Disease Control and Prevention (CDC), people should aim to achieve 10,000 steps per day. Based on my summarizing analysis, the average FitBit user achieves fewer than 10,000 steps per day; this implies that the average FitBit user might not be as active as is recommended. This is further supported by the activity intensity data: the about 50% of FitBit users spend less than about 412 minutes engaging in sedentary activity, 67 minutes engaging in light activity, 10 minutes engaging in moderate activity, and no time at all engaging in intense activity. 
+
+In my weekday analysis of `joined_daily_activity_calories_intensity_steps.csv`, I found that FitBit users spend the most time on average engaging in non-sedentary activity on Saturdays and the least time on average on Sundays. Perhaps this means that more people are staying home on Sundays but going out on Saturdays; further research would be required to answer this question.
+
+#### **...From `daily_sleep_merged_cleaned.csv` Analysis Results**
+
+The distribution of the features in `daily_sleep_merged_cleaned.csv` are best described as follows:
+
+| Feature | Mean | Median | Skew |
+| ------- | ---- | ------ | ---- |
+| TotalHoursAsleep | 6.9911	| 7.2167 | Negative |
+| TotalHoursInBed | 7.6440 | 7.7167	| Negative |
+| HoursAsleepHoursInBedDiff | 0.6529 | 0.4167 | Positive |
+
+According to the CDC, adults over the age of 18 should be getting at least 7 hours of sleep; my analysis leads to the inference that more than 50% of FitBit users meet this recommended amount of sleep. Furthermore, it can be inferred that on most FitBit users are able to fall asleep relatively quickly (within an hour), since the average amount of time FitBit users spend in bed but not sleeping is less than an hour. 
+
+## References
+1. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
+2. [The Centers for Disease Control and Prevention (CDC), "How Much Sleep Do I Need?"](https://www.cdc.gov/sleep/about_sleep/how_much_sleep.html)
+
+
+
+
+
