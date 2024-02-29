@@ -253,9 +253,9 @@ Therefore, the distributions of the features included in `joined_daily_activity_
 | ModeratelyActiveMinutes | 17.60	| 10.00 | Positive |
 | VeryActiveMinutes | 24.46 | 0.00 | Positive |
 
-According to the Centers for Disease Control and Prevention (CDC), people should aim to achieve 10,000 steps per day. Based on my summarizing analysis, the average FitBit user achieves fewer than 10,000 steps per day; this implies that the average FitBit user might not be as active as is recommended. This is further supported by the activity intensity data: the about 50% of FitBit users spend less than about 412 minutes engaging in sedentary activity, 67 minutes engaging in light activity, 10 minutes engaging in moderate activity, and no time at all engaging in intense activity. 
+According to the Centers for Disease Control and Prevention (CDC), people should aim to achieve 10,000 steps per day. Based on my summarizing analysis, the average participating FitBit user in this data achieves fewer than 10,000 steps per day; this implies that the average participating FitBit user might not be as active as is recommended. This is further supported by the activity intensity data: about 50% of participating FitBit users spend less than about 412 minutes engaging in sedentary activity, 67 minutes engaging in light activity, 10 minutes engaging in moderate activity, and no time at all engaging in intense activity. 
 
-In my weekday analysis of `joined_daily_activity_calories_intensity_steps.csv`, I found that FitBit users spend the most time on average engaging in non-sedentary activity on Saturdays and the least time on average on Sundays. Perhaps this means that more people are staying home on Sundays but going out on Saturdays; further research would be required to answer this question.
+In my weekday analysis of `joined_daily_activity_calories_intensity_steps.csv`, I found that participating FitBit users spend the most time on average engaging in non-sedentary activity on Saturdays and the least time on average on Sundays. If we were able to make inferences about the general FitBit user population, perhaps this would mean that more people are staying home on Sundays but going out on Saturdays; further research would be required to answer this question. Note, I haven't been making any inferences about the general FitBit user population with the insights from this data set's analyses because `joined_daily_activity_calories_intensities_steps_analysis.csv` only contains records for 24 users, not the 30 required to satisfy the central limit theorem (CLT). Going forward, though, I will "pretend" that this data set does contain a sufficient sample size, for the sake of generalizing to the Bellabeat user population later on.
 
 #### **...From `daily_sleep_merged_cleaned.csv` Analysis Results**
 
@@ -290,7 +290,7 @@ My average BMI analysis for each of the participants appearing in the cleaned we
 | Obese | 0 |
 | Severely/Morbidly Obese | 1 |
 
-Based on these results, it is evident that most of the participants appearing in the cleaned weight log data were at least overweight. Again, the sample size is less than 30, so we cannot apply this observation towards an inference about the general FitBit user population.
+Based on these results, it is evident that most of the participants appearing in the cleaned weight log data were at least overweight. Again, the sample size is less than 30, so we cannot apply this observation towards an inference about the general FitBit user population. Going forward, though, I will "pretend" that this data set does contain a sufficient sample size, for the sake of generalizing to the Bellabeat user population later on.
 
 ## References
 1. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
