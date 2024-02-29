@@ -28,6 +28,7 @@
   - [Insights](#insights)
     - [**...From `joined_daily_activity_calories_intensity_steps.csv` Analysis Results**](#from-joined_daily_activity_calories_intensity_stepscsv-analysis-results)
     - [**...From `daily_sleep_merged_cleaned.csv` Analysis Results**](#from-daily_sleep_merged_cleanedcsv-analysis-results)
+    - [**...From `weight_log_info_merged_cleaned.csv` Analysis Results**](#from-weight_log_info_merged_cleanedcsv-analysis-results)
 - [References](#references)
 
 ## Ask Phase
@@ -266,11 +267,35 @@ The distribution of the features in `daily_sleep_merged_cleaned.csv` are best de
 | TotalHoursInBed | 7.6440 | 7.7167	| Negative |
 | HoursAsleepHoursInBedDiff | 0.6529 | 0.4167 | Positive |
 
-According to the CDC, adults over the age of 18 should be getting at least 7 hours of sleep; my analysis leads to the inference that more than 50% of FitBit users meet this recommended amount of sleep. Furthermore, it can be inferred that on most FitBit users are able to fall asleep relatively quickly (within an hour), since the average amount of time FitBit users spend in bed but not sleeping is less than an hour. 
+According to the CDC, adults over the age of 18 should be getting at least 7 hours of sleep; my analysis leads to the inference that more than 50% of FitBit user sleep records meet this recommended amount of sleep. Furthermore, it can be inferred that most FitBit user sleep records will show that the submitting users are able to fall asleep relatively quickly (within an hour), since the average amount of time the participants spent in bed but not sleeping is less than an hour. 
+
+#### **...From `weight_log_info_merged_cleaned.csv` Analysis Results**
+
+The distribution of the features in `weight_log_info_merged_cleaned.csv` are best described as follows:
+
+| Feature | Mean | Median | Skew | 
+| ------- | ---- | ------ | ---- |
+| WeightPounds | 158.8118 | 137.7889 | Positive |
+| BMI | 25.1852 | 24.3900 | Positive |
+
+Because the sample size for the cleaned weight log data is less than 30 users, I wouldn't be justified in using this data to make inferences about the entire FitBit user population. However, if I did have enough of a sample size to satisfy the central limit theorem (CLT), based on the summarizing data, I could infer that more than 50% of weight log records show that their submitting FitBit user is at least overweight based on their BMI (according to the United Kingdom National Health Service, or NHS).
+
+My average BMI analysis for each of the participants appearing in the cleaned weight log data shows the following counts, grouped by average BMI classification (again, according to the NHS):
+
+| BMI Classification | Number of Participants |
+| ------------------ | ---------------------- |
+| Underweight | 0 |
+| Healthy Weight | 3 |
+| Overweight | 5 |
+| Obese | 0 |
+| Severely/Morbidly Obese | 1 |
+
+Based on these results, it is evident that most of the participants appearing in the cleaned weight log data were at least overweight. Again, the sample size is less than 30, so we cannot apply this observation towards an inference about the general FitBit user population.
 
 ## References
 1. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
 2. [The Centers for Disease Control and Prevention (CDC), "How Much Sleep Do I Need?"](https://www.cdc.gov/sleep/about_sleep/how_much_sleep.html)
+3. [The United Kingdom National Health Service (NHS), "Body mass index (BMI)"](https://www.nhsinform.scot/healthy-living/food-and-nutrition/healthy-eating-and-weight-loss/body-mass-index-bmi)
 
 
 
