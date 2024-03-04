@@ -29,6 +29,7 @@
     - [**...From `joined_daily_activity_calories_intensity_steps.csv` Analysis Results**](#from-joined_daily_activity_calories_intensity_stepscsv-analysis-results)
     - [**...From `daily_sleep_merged_cleaned.csv` Analysis Results**](#from-daily_sleep_merged_cleanedcsv-analysis-results)
     - [**...From `weight_log_info_merged_cleaned.csv` Analysis Results**](#from-weight_log_info_merged_cleanedcsv-analysis-results)
+- [Share Phase](#share-phase)
 - [References](#references)
 
 ## Ask Phase
@@ -80,7 +81,7 @@ The only processing step performed on the data in this file was to remove record
 
 ### `dailyActivity_merged.csv` Processing
 
-The only processing step performed on the data in this file was to remove both features which are mostly zeros (specifically the `LoggedActivitiesDistance` and `SedentaryActiveDistance` features) and those which overlap with the other data files (specifically the `TotalSteps`, `VeryActiveDistance`, `ModeratelyActiveDistance`, `LightActiveDistance`, `VeryActiveMinutes`, `FairlyActiveMinutes`, `LightlyActiveMinutes`, `SedentaryMinutes`, and `Calories` features). I expect any other inconsistencies to be filtered out when I perform the `INNER JOIN` between this file and the `dailySteps_merged.csv`, `dailyIntensities_merged.csv`, `dailyCalories_merged.csv` files.
+The only processing steps performed on the data in this file was to remove both features which are mostly zeros (specifically the `LoggedActivitiesDistance` and `SedentaryActiveDistance` features) and those which overlap with the other data files (specifically the `TotalSteps`, `VeryActiveDistance`, `ModeratelyActiveDistance`, `LightActiveDistance`, `VeryActiveMinutes`, `FairlyActiveMinutes`, `LightlyActiveMinutes`, `SedentaryMinutes`, and `Calories` features), as well as to adding the `Weekday` and `TotalActiveMinutes` feature. I expect other inconsistencies which were not handled here to be filtered out when I perform the `INNER JOIN` between this file and the `dailySteps_merged.csv`, `dailyIntensities_merged.csv`, `dailyCalories_merged.csv` files.
 
 ### `INNER JOIN` Between the Four `daily*_merged.csv` Files 
 
@@ -291,6 +292,14 @@ My average BMI analysis for each of the participants appearing in the cleaned we
 | Severely/Morbidly Obese | 1 |
 
 Based on these results, it is evident that most of the participants appearing in the cleaned weight log data were at least overweight. Again, the sample size is less than 30, so we cannot apply this observation towards an inference about the general FitBit user population. Going forward, though, I will "pretend" that this data set does contain a sufficient sample size, for the sake of generalizing to the Bellabeat user population later on.
+
+## Share Phase
+
+I decided to use Tableau to create visualizations using the cleaned data sets, particularly the data in the `joined_daily_activity_calories_intensities_steps_analysis.csv`, `weight_log_info_merged_cleaned.csv`, and `daily_sleep_merged_cleaned.csv` files.
+
+The most current Tableau workbook can be found on [my Tableau Public profile](https://public.tableau.com/app/profile/charles.clark4861/vizzes). 
+
+
 
 ## References
 1. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
