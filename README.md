@@ -59,7 +59,7 @@ The data in each CSV file seem to be relatively clean already. However, I did pe
 
 ###  `weightLogInfo_merged.csv` Processing
 
-The only processing step performed on the data in this file was to delete the `Fat` column, as it only contained 2 non-null entries. 
+The only processing step performed on the data in this file was to delete the `Fat` column, as it only contained 2 non-null entries, and to create the `BMIWeightClass` feature based on United Kingdom National Health Service's (NHS) guidelines on weight classes from BMI ranges.
 
 ### `dailySteps_merged.csv` Processing
 
@@ -281,7 +281,7 @@ The distribution of the features in `weight_log_info_merged_cleaned.csv` are bes
 
 Because the sample size for the cleaned weight log data is less than 30 users, I wouldn't be justified in using this data to make inferences about the entire FitBit user population. However, if I did have enough of a sample size to satisfy the central limit theorem (CLT), based on the summarizing data, I could infer that more than 50% of weight log records show that their submitting FitBit user is at least overweight based on their BMI (according to the United Kingdom National Health Service, or NHS).
 
-My average BMI analysis for each of the participants appearing in the cleaned weight log data shows the following counts, grouped by average BMI classification (again, according to the NHS):
+My average BMI analysis for each of the participants appearing in the cleaned weight log data shows the following counts, grouped by average BMI weight class (again, according to the NHS):
 
 | BMI Classification | Number of Participants |
 | ------------------ | ---------------------- |
@@ -297,14 +297,14 @@ Based on these results, it is evident that most of the participants appearing in
 
 I decided to use Tableau to create visualizations using the cleaned data sets, particularly the data in the `joined_daily_activity_calories_intensities_steps_analysis.csv`, `weight_log_info_merged_cleaned.csv`, and `daily_sleep_merged_cleaned.csv` files.
 
-The most current Tableau workbook can be found on [my Tableau Public profile](https://public.tableau.com/app/profile/charles.clark4861/vizzes). 
+The final current Tableau workbook can be found on [my Tableau Public profile](https://public.tableau.com/app/profile/charles.clark4861/vizzes): it contains a dashboard with viusalizations depicting activity levels by weekday, participating userbase separated by BMI weight class, the distribution of amount of time sleeping, and the distribution of the amount of time in bed but not sleeping.
 
-
+**Note:** The "Avg. Normal distribution approximation" feature in the "Time sleeping" visualization was only used to correctly color the distribution in the histogram. As such, it doesn't really have much analytical value.
 
 ## References
-1. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
-2. [The Centers for Disease Control and Prevention (CDC), "How Much Sleep Do I Need?"](https://www.cdc.gov/sleep/about_sleep/how_much_sleep.html)
-3. [The United Kingdom National Health Service (NHS), "Body mass index (BMI)"](https://www.nhsinform.scot/healthy-living/food-and-nutrition/healthy-eating-and-weight-loss/body-mass-index-bmi)
+1. [The United Kingdom National Health Service (NHS), "Body mass index (BMI)"](https://www.nhsinform.scot/healthy-living/food-and-nutrition/healthy-eating-and-weight-loss/body-mass-index-bmi)
+2. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
+3. [The Centers for Disease Control and Prevention (CDC), "How Much Sleep Do I Need?"](https://www.cdc.gov/sleep/about_sleep/how_much_sleep.html)
 
 
 
