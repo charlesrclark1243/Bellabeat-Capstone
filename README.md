@@ -30,6 +30,7 @@
     - [**...From `daily_sleep_merged_cleaned.csv` Analysis Results**](#from-daily_sleep_merged_cleanedcsv-analysis-results)
     - [**...From `weight_log_info_merged_cleaned.csv` Analysis Results**](#from-weight_log_info_merged_cleanedcsv-analysis-results)
 - [Share Phase](#share-phase)
+- [Act Phase](#act-phase)
 - [References](#references)
 
 ## Ask Phase
@@ -301,11 +302,18 @@ The final current Tableau workbook can be found on [my Tableau Public profile](h
 
 **Note:** The "Avg. Normal distribution approximation" feature in the "Time sleeping" visualization was only used to correctly color the distribution in the histogram. As such, it doesn't really have much analytical value.
 
+## Act Phase
+
+From the insights I extracted from the data during my analysis, I have come up with a few different marketing strategy suggestions for Bellabeat, assuming the trends depicted in the FitBit user data carry over:
+- Additional research should be performed to obtain and analyze weight data from a large enough sample so the Central Limit Theorem (CLT) can be applied in asserting the insights captured in this analysis. If this further analysis confirms that the trends depicted in the FitBit user data, i.e., that half or more of the device userbase is at least overweight, then Bellabeat should focus on advertising to populations who meet this condition and want to work towards a healthier weight. Furthermore, the development of new products specifically aimed to help these populations track their progress and continue to lose weight would be benficial considering the size of Bellabeat's userbase that would find use in these products.
+- Additional research should be done into why the userbase seems to be more active on Saturdays and least active on Sundays, and also if these trends carry over to populations outside the userbase. If this research indicates that non-users are more active on Saturdays as well because they are going out to enjoy time off from weekday-based jobs, perhaps it would benefit Bellabeat to consider increased funding towards radio, music streaming app, and electronic billboard advertising on Saturdays. Furthermore, if this research indicates that non-users are also least active on Sundays because they are relaxing at home before the start of a new workweek, it might be beneficial to allocate more funding towards television and streaming app (like Amazon Prime, Hulu, etc.) advertising on this day. 
+- It could also be beneficial to apply the insights derived from the FitBit user sleep data torwards Bellabeat's advertising. While I can't logically say that owning a fitness device alone will lead to better sleeping habits, it would certainly be fair to suggest that such devices allow users a better understanding of their sleeping habits. This could be especially useful for people who are trying to fix their sleep schedules. In addition, it is also possible that the activities that fitness device users engage in to lose weight or stay fit themselves lead to better sleeping habits: one study found that consitent exercise can lead to improved sleep quality, even in those dealing with sleeping disorders such as insomnia. Therefore, Bellabeat can leverage the notion that engaging in fitness activities using its products can lead to better sleeping habits and quality in such a way that makes the non-user population (especially the non-user population that struggles with healthy sleeping habits) want to purchase its products.
+
 ## References
 1. [The United Kingdom National Health Service (NHS), "Body mass index (BMI)"](https://www.nhsinform.scot/healthy-living/food-and-nutrition/healthy-eating-and-weight-loss/body-mass-index-bmi)
 2. [The Centers for Disease Control and Prevention (CDC), "Lifestyle Coach Facilitation Guide: Post-Core"](https://www.cdc.gov/diabetes/prevention/pdf/postcurriculum_session8.pdf)
 3. [The Centers for Disease Control and Prevention (CDC), "How Much Sleep Do I Need?"](https://www.cdc.gov/sleep/about_sleep/how_much_sleep.html)
-
+4. [M.A. Alnawwar et al., "The Effect of Physical Activity on Sleep Quality and Sleep Disorder: A Systematic Review," Aug. 2023](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10503965/#:~:text=Studies%20have%20shown%20that%20regular,did%20not%20exercise%20%5B19%5D.)
 
 
 
