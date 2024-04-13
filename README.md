@@ -300,6 +300,8 @@ I decided to use Tableau to create visualizations using the cleaned data sets, p
 
 The final current Tableau workbook can be found on [my Tableau Public profile](https://public.tableau.com/app/profile/charles.clark4861/vizzes): it contains a dashboard with viusalizations depicting activity levels by weekday, participating userbase separated by BMI weight class, the distribution of amount of time sleeping, and the distribution of the amount of time in bed but not sleeping.
 
+Furthermore, to facilitate full transparency, I've made the data I stored on my Google Drive available using [this link](https://drive.google.com/drive/folders/1JKIE-HVX1SnP8ngxAQ3a6JxHc0nXOdk3?usp=drive_link). 
+
 **Note:** The "Avg. Normal distribution approximation" feature in the "Time sleeping" visualization was only used to correctly color the distribution in the histogram. As such, it doesn't really have much analytical value.
 
 ## Act Phase
